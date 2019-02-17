@@ -33,6 +33,7 @@
     "markdown-loader": "^5.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "rimraf": "^2.6.3",
     "terser": "^3.14.1",
     "webpack": "^4.29.0",
     "webpack-cli": "^3.2.1",

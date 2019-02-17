@@ -25,7 +25,7 @@ class Index extends React.Component {
                 {
                     postList.map(item => 
                         //<BlogPost title={item.title} url={item.url} />
-                        <h1>Test</h1>
+                        <h1>Index</h1>
                     )
                 }
             </div>);

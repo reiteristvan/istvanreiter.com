@@ -1,0 +1,10 @@
+[
+    {
+        "id": 1,
+        "title": "Hello World!",
+        "date": "2019-02-17",
+        "markdownUrl": "https://raw.githubusercontent.com/reiteristvan/reiteristvan.github.io/master/posts/hello-world.md",
+        "spoiler": "Hello World :)",
+        "tags": [ "hello", "world" ]
+    }
+]
