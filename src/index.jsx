@@ -4,35 +4,44 @@ import ReactDOM from "react-dom";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import BlogPost from './components/blogPost.jsx'; 
+import Post from './components/post.jsx'; 
+import PostHeader from './components/postHeader.jsx';
 
-const postList = [
-    {
-        id: 'hello-world',
-        title: 'Hello World!',
-        url: 'https://raw.githubusercontent.com/gaearon/overreacted.io/master/src/pages/optimized-for-change/index.md'
-    }
-];
+import { fetchContentJson } from './services/postService';
+import { State } from './state';
 
 class Index extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            content: []
+        };
+    }
+
+    async componentWillMount(){
+        var content = await fetchContentJson();
+
+        State.posts = content;
+
+        this.setState({
+            content: content
+        });
     }
 
     render() {
-        return (            
-            <div>
-                {
-                    postList.map(item => 
-                        //<BlogPost title={item.title} url={item.url} />
-                        <h1>Index</h1>
-                    )
-                }
-            </div>);
+        return (                            
+            this.state.content.map(item => 
+                <PostHeader 
+                    urlId={item.urlId} 
+                    title={item.title} 
+                    spoiler={item.spoiler} />
+            )
+        );
     }
 }
 
-export default class Bootstrap extends React.Component {
+export default class Bootstrapper extends React.Component {
     constructor(props){
         super(props);
     }
@@ -42,11 +51,11 @@ export default class Bootstrap extends React.Component {
             <Router>
                 <div>
                     <Route exact path="/" component={Index} />
-                    <Route path="/id" component={BlogPost} />
+                    <Route path="/:id" component={Post} />
                 </div>
             </Router>
         );
     }
 }
 
-ReactDOM.render(<Bootstrap />, document.getElementById('app'));
+ReactDOM.render(<Bootstrapper />, document.getElementById('app'));

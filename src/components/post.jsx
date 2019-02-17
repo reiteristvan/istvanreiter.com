@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { fetchPost } from '../services/postService';
 
-export default class BlogPost extends React.Component {
+export default class Post extends React.Component {
     constructor(props){
         super(props);
 
@@ -14,19 +14,18 @@ export default class BlogPost extends React.Component {
     }
 
     async componentWillMount() {
-        console.log(this.props);
-        /*var text = await fetchPost(this.props.url);
+        var text = await fetchPost(this.props.match.params.id);
 
         this.setState({
             post: text
-        });*/
-      }
+        });
+    }
 
     render() {
         return (
             <div>
-                <h1>This is a blogpost :)</h1>
                 {this.props.title}
+                {this.props.date}
                 <br />
                 <ReactMarkdown source={this.state.post} />
             </div>
