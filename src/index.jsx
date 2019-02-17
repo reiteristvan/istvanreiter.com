@@ -7,8 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Post from './components/post.jsx'; 
 import PostHeader from './components/postHeader.jsx';
 
-import { fetchContentJson } from './services/postService';
-import { State } from './state';
+import { initializeState, State } from './state';
 
 class Index extends React.Component {
     constructor(props) {
@@ -20,16 +19,14 @@ class Index extends React.Component {
     }
 
     async componentWillMount(){
-        var content = await fetchContentJson();
-
-        State.posts = content;
-
+        console.log(State.posts);
         this.setState({
-            content: content
+            content: State.posts
         });
     }
 
     render() {
+        console.log('render');
         return (                            
             this.state.content.map(item => 
                 <PostHeader 
@@ -44,16 +41,32 @@ class Index extends React.Component {
 export default class Bootstrapper extends React.Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            isLoading: true
+        };
+    }
+
+    async componentWillMount() {
+        await initializeState();
+        
+        this.setState({
+            isLoading: false
+        });
     }
 
     render() {
+        if(this.state.isLoading) {
+            return null;
+        }
+
         return (
-            <Router>
-                <div>
-                    <Route exact path="/" component={Index} />
-                    <Route path="/:id" component={Post} />
-                </div>
-            </Router>
+                <Router>
+                    <div>
+                        <Route exact path="/" component={Index} />
+                        <Route path="/:id" component={Post} />
+                    </div>
+                </Router>
         );
     }
 }
