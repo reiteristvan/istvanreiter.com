@@ -4,7 +4,7 @@
         "urlId": "hello-world",
         "title": "Hello World!",
         "date": "2019-02-17",
-        "markdownUrl": "https://raw.githubusercontent.com/reiteristvan/reiteristvan.github.io/master/posts/hello-world.md",
+        "markdownUrl": "https://raw.githubusercontent.com/reiteristvan/CSharpStyleGuide/master/README.md",
         "spoiler": "Hello World :)",
         "tags": [ "hello", "world" ]
     }
