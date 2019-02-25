@@ -4,7 +4,7 @@
   "description": "Personal blog",
   "main": "main.tsx",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --hot --open",
     "build": "webpack --mode production"
   },
   "repository": {

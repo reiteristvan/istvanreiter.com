@@ -19,21 +19,20 @@ class Index extends React.Component {
     }
 
     async componentWillMount(){
-        console.log(State.posts);
         this.setState({
             content: State.posts
         });
     }
 
     render() {
-        console.log('render');
-        return (                            
-            this.state.content.map(item => 
-                <PostHeader 
-                    urlId={item.urlId} 
-                    title={item.title} 
-                    spoiler={item.spoiler} />
-            )
+        return (                          
+                this.state.content.map(item => 
+                    <PostHeader 
+                        urlId={item.urlId} 
+                        title={item.title}
+                        date={item.date}
+                        spoiler={item.spoiler} />
+                )
         );
     }
 }
@@ -62,7 +61,7 @@ export default class Bootstrapper extends React.Component {
 
         return (
                 <Router>
-                    <div>
+                    <div className="contentContainer">
                         <Route exact path="/" component={Index} />
                         <Route path="/:id" component={Post} />
                     </div>
